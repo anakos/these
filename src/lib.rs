@@ -743,4 +743,20 @@ impl<T, U> These<T, U> {
 
         (this, that)
     }
+
+    pub fn as_ref(&self) -> These<&T, &U> {
+        match *self {
+            These::This(ref t)        => These::This(t),
+            These::That(ref u)        => These::That(u),
+            These::These(ref t,ref u) => These::These(t,u),
+        }
+    }
+
+    pub fn as_mut(&mut self) -> These<&mut T, &mut U> {
+        match *self {
+            These::This(ref mut t)            => These::This(t),
+            These::That(ref mut u)            => These::That(u),
+            These::These(ref mut t,ref mut u) => These::These(t,u),
+        }
+    }    
 }
